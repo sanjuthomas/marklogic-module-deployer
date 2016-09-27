@@ -1,6 +1,6 @@
 package org.sanju.ml.deployer;
 
-import org.sanju.ml.payload.MLPayload;
+import org.sanju.ml.payload.MLRestExtensionsPayload;
 
 import com.marklogic.client.DatabaseClient;
 
@@ -19,8 +19,7 @@ public class MLModuleDemployerImpl implements MLModuleDeployer{
 	}
 	
 	@Override
-	public void deploy(MLPayload mlPayload) {
-		// TODO Auto-generated method stub
+	public void deploy(final MLRestExtensionsPayload mlRestExtensionsPayload) {
 		
 	}
 

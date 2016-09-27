@@ -1,6 +1,6 @@
 package org.sanju.ml.deployer;
 
-import org.sanju.ml.payload.MLPayload;
+import org.sanju.ml.payload.MLRestExtensionsPayload;
 
 /**
  * 
@@ -9,6 +9,6 @@ import org.sanju.ml.payload.MLPayload;
  */
 public interface MLModuleDeployer {
 	
-	public void deploy(final MLPayload mlPayload);
+	void deploy(MLRestExtensionsPayload mlRestExtensionsPayload);
 
 }

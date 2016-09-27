@@ -18,7 +18,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
 public class MLModuleDeployerMojo extends AbstractMojo {
 
-	@Parameter( property = "ml.configuration", defaultValue = "${project.build.sourceDirectory}" )
+	@Parameter( property = "ml.configuration", defaultValue = "${basedir}" )
 	private String mlConfiguration;
 	
 	public void execute() throws MojoExecutionException {

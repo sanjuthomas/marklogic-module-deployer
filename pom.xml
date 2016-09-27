@@ -13,6 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.home>.</project.home>
 	</properties>
 
 	<dependencies>
@@ -63,7 +64,7 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>help-goal</id>
+						<id>ml-module-deployer-id</id>
 						<goals>
 							<goal>helpmojo</goal>
 						</goals>
