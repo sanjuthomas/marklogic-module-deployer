@@ -1,14 +1,16 @@
 package org.sanju.ml.payload;
 
+import java.io.File;
+
 /**
- * 
+ *
  * @author Sanju Thomas
  *
  */
 public class MLSearchOptionsPayload extends MLPayload{
 
-	public MLSearchOptionsPayload(String contentType, String endpoint) {
-		super(contentType, endpoint);
+	public MLSearchOptionsPayload(final File file) {
+		super(file);
 	}
 
 }
