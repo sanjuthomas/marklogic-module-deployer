@@ -37,8 +37,15 @@ public class TestMLModuleDemployerImpl {
 
 		this.mlRestExtensionsPayload = new MLRestExtensionsPayload(new File("src/test/resources/rest-extensions/js-test-extension.sjs"));
 		this.mlModuleDeployer.deploy(this.mlRestExtensionsPayload);
-
 	}
+
+	@Test
+	public void shouldDeployXQueryExtension(){
+
+		this.mlRestExtensionsPayload = new MLRestExtensionsPayload(new File("src/test/resources/rest-extensions/xq-test-extension.xqy"));
+		this.mlModuleDeployer.deploy(this.mlRestExtensionsPayload);
+	}
+
 
 
 }
