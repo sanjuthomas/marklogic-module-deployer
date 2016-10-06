@@ -2,7 +2,7 @@ package org.sanju.ml.deployer;
 
 import java.io.File;
 
-import org.codehaus.plexus.util.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.MLRestExtensionsPayload;
 
 import com.marklogic.client.DatabaseClient;
@@ -33,7 +33,7 @@ public class MLModuleDemployerImpl implements MLModuleDeployer{
 		final File file = mlRestExtensionsPayload.getFile();
 		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();
 		extensionMetadata.setScriptLanguage(mlRestExtensionsPayload.getScriptLanguage());
-		resourceExtensionsManager.writeServices(FileUtils.extension(file.getName()), new FileHandle(file), extensionMetadata, new MethodParameters(MethodType.PUT));
+		resourceExtensionsManager.writeServices(FilenameUtils.removeExtension(file.getName()), new FileHandle(file), extensionMetadata, new MethodParameters(MethodType.PUT));
 	}
 
 }
