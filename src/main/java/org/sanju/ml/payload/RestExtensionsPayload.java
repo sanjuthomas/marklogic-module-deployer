@@ -9,13 +9,13 @@ import com.marklogic.client.admin.ExtensionMetadata.ScriptLanguage;
  * @author Sanju Thomas
  *
  */
-public class MLRestExtensionsPayload extends MLPayload{
+public class RestExtensionsPayload extends Payload{
 
 	private final ScriptLanguage scriptLanguage;
 
-	public MLRestExtensionsPayload(final File file) {
+	public RestExtensionsPayload(final File file) {
 		super(file);
-		this.scriptLanguage = LanguagePicker.getScriptingLanguage(file);
+		this.scriptLanguage = PayloadHelper.getScriptingLanguage(file);
 	}
 
 	public ScriptLanguage getScriptLanguage() {

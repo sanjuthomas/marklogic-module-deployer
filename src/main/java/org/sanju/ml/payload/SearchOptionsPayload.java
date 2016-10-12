@@ -7,9 +7,9 @@ import java.io.File;
  * @author Sanju Thomas
  *
  */
-public class MLSearchOptionsPayload extends MLPayload{
+public class SearchOptionsPayload extends Payload{
 
-	public MLSearchOptionsPayload(final File file) {
+	public SearchOptionsPayload(final File file) {
 		super(file);
 	}
 

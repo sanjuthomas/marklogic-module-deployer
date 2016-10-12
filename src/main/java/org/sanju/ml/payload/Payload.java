@@ -10,7 +10,7 @@ import com.marklogic.client.admin.ExtensionMetadata.ScriptLanguage;
  * @author Sanju Thomas
  *
  */
-public  class MLPayload {
+public  class Payload {
 
 	protected final static Map<String, ScriptLanguage> fileExtensionLanguageMap = new HashMap<>();
 	private final File file;
@@ -25,7 +25,7 @@ public  class MLPayload {
 	 * @param contentType
 	 * @param endpoint
 	 */
-	public MLPayload(final File file){
+	public Payload(final File file){
 		this.file = file;
 	}
 
