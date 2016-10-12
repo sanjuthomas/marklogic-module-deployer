@@ -22,7 +22,7 @@ public class TransformDeployer implements ModuleDeployer<TransformsPayload>{
 
 	@Override
 	public void deploy(TransformsPayload t) {
-		final TransformExtensionsManager resourceExtensionsManager = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
+		final TransformExtensionsManager transformExtensionsManager = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
 		final File file = t.getFile();
 	}
 
