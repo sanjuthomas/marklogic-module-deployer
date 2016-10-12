@@ -4,10 +4,7 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sanju.ml.MLApplicationServer;
 import org.sanju.ml.MLClientFactory;
-import org.sanju.ml.MLCredential;
-import org.sanju.ml.MLServer;
 import org.sanju.ml.payload.RestExtensionsPayload;
 
 /**
@@ -15,21 +12,16 @@ import org.sanju.ml.payload.RestExtensionsPayload;
  * @author Sanju Thomas
  *
  */
-public class TestMLModuleDemployerImpl {
+public class TestRESTExtensionDeployer extends AbstractTest{
 
-	private ModuleDeployer mlModuleDeployer;
-	private MLServer mlServer;
-	private MLApplicationServer mlApplicationServer;
 	private RestExtensionsPayload mlRestExtensionsPayload;
+	private ModuleDeployer<RestExtensionsPayload> mlModuleDeployer;
 
-
+	@Override
 	@Before
 	public void setup(){
-		this.mlServer = new MLServer("localhost", new MLCredential("admin", "admin"));
-		this.mlApplicationServer = new MLApplicationServer(this.mlServer, 15000, "azsearch-content", "azsearch-modules");
+		super.setup();
 		this.mlModuleDeployer = new RestExtensionDeployer(MLClientFactory.getClient(this.mlApplicationServer));
-
-
 	}
 
 	@Test
