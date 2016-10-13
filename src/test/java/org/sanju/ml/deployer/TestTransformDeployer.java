@@ -5,7 +5,7 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.MLClientFactory;
-import org.sanju.ml.payload.TransformsPayload;
+import org.sanju.ml.payload.TransformPayload;
 
 /**
  *
@@ -14,8 +14,8 @@ import org.sanju.ml.payload.TransformsPayload;
  */
 public class TestTransformDeployer extends AbstractTest{
 
-	private TransformsPayload transformsPayload;
-	private ModuleDeployer<TransformsPayload> mlModuleDeployer;
+	private TransformPayload transformsPayload;
+	private ModuleDeployer<TransformPayload> mlModuleDeployer;
 
 	@Override
 	@Before
@@ -27,21 +27,21 @@ public class TestTransformDeployer extends AbstractTest{
 	@Test
 	public void shouldDeployJavaScriptTransform(){
 
-		this.transformsPayload = new TransformsPayload(new File("src/test/resources/transforms/js-test-transform.sjs"));
+		this.transformsPayload = new TransformPayload(new File("src/test/resources/transforms/js-test-transform.sjs"));
 		this.mlModuleDeployer.deploy(this.transformsPayload);
 	}
 
 	@Test
 	public void shouldDeployXQueryTransform(){
 
-		this.transformsPayload = new TransformsPayload(new File("src/test/resources/transforms/xq-test-transform.xqy"));
+		this.transformsPayload = new TransformPayload(new File("src/test/resources/transforms/xq-test-transform.xqy"));
 		this.mlModuleDeployer.deploy(this.transformsPayload);
 	}
 
 	@Test
 	public void shouldDeployXLSTransform(){
 
-		this.transformsPayload = new TransformsPayload(new File("src/test/resources/transforms/xl-test-transform.xls"));
+		this.transformsPayload = new TransformPayload(new File("src/test/resources/transforms/xl-test-transform.xls"));
 		this.mlModuleDeployer.deploy(this.transformsPayload);
 
 	}

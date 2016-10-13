@@ -4,11 +4,9 @@ import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.PayloadHelper.ContentType;
-import org.sanju.ml.payload.TransformsPayload;
+import org.sanju.ml.payload.TransformPayload;
 
 import com.marklogic.client.DatabaseClient;
-import com.marklogic.client.admin.ExtensionMetadata;
-import com.marklogic.client.admin.ExtensionMetadata.ScriptLanguage;
 import com.marklogic.client.admin.TransformExtensionsManager;
 import com.marklogic.client.io.FileHandle;
 
@@ -17,7 +15,7 @@ import com.marklogic.client.io.FileHandle;
  * @author Sanju Thomas
  *
  */
-public class TransformDeployer implements ModuleDeployer<TransformsPayload> {
+public class TransformDeployer implements ModuleDeployer<TransformPayload> {
 
 	final DatabaseClient databaseClient;
 
@@ -26,13 +24,10 @@ public class TransformDeployer implements ModuleDeployer<TransformsPayload> {
 	}
 
 	@Override
-	public void deploy(final TransformsPayload t) {
+	public void deploy(final TransformPayload t) {
 		final TransformExtensionsManager tem = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
 		final File file = t.getFile();
 		final String contentType = t.getContentType();
-
-		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();
-		extensionMetadata.setScriptLanguage(ScriptLanguage.JAVASCRIPT);
 
 		if (ContentType.XLS.getType().equalsIgnoreCase(contentType)) {
 			tem.writeXSLTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));

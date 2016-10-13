@@ -5,7 +5,7 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.MLClientFactory;
-import org.sanju.ml.payload.RestExtensionsPayload;
+import org.sanju.ml.payload.RestExtensionPayload;
 
 /**
  *
@@ -14,8 +14,8 @@ import org.sanju.ml.payload.RestExtensionsPayload;
  */
 public class TestRESTExtensionDeployer extends AbstractTest{
 
-	private RestExtensionsPayload mlRestExtensionsPayload;
-	private ModuleDeployer<RestExtensionsPayload> mlModuleDeployer;
+	private RestExtensionPayload mlRestExtensionsPayload;
+	private ModuleDeployer<RestExtensionPayload> mlModuleDeployer;
 
 	@Override
 	@Before
@@ -27,14 +27,14 @@ public class TestRESTExtensionDeployer extends AbstractTest{
 	@Test
 	public void shouldDeployJavaScriptExtension(){
 
-		this.mlRestExtensionsPayload = new RestExtensionsPayload(new File("src/test/resources/rest-extensions/js-test-extension.sjs"));
+		this.mlRestExtensionsPayload = new RestExtensionPayload(new File("src/test/resources/rest-extensions/js-test-extension.sjs"));
 		this.mlModuleDeployer.deploy(this.mlRestExtensionsPayload);
 	}
 
 	@Test
 	public void shouldDeployXQueryExtension(){
 
-		this.mlRestExtensionsPayload = new RestExtensionsPayload(new File("src/test/resources/rest-extensions/xq-test-extension.xqy"));
+		this.mlRestExtensionsPayload = new RestExtensionPayload(new File("src/test/resources/rest-extensions/xq-test-extension.xqy"));
 		this.mlModuleDeployer.deploy(this.mlRestExtensionsPayload);
 	}
 
