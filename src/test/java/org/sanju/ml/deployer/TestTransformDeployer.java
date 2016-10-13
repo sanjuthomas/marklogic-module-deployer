@@ -38,4 +38,12 @@ public class TestTransformDeployer extends AbstractTest{
 		this.mlModuleDeployer.deploy(this.transformsPayload);
 	}
 
+	@Test
+	public void shouldDeployXLSTransform(){
+
+		this.transformsPayload = new TransformsPayload(new File("src/test/resources/transforms/xl-test-transform.xls"));
+		this.mlModuleDeployer.deploy(this.transformsPayload);
+
+	}
+
 }

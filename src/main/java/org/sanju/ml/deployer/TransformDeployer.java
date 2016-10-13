@@ -39,7 +39,7 @@ public class TransformDeployer implements ModuleDeployer<TransformsPayload> {
 		}else if(ContentType.XQY.getType().equalsIgnoreCase(contentType)){
 			tem.writeXQueryTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 		}else if(ContentType.SJS.getType().equalsIgnoreCase(contentType)){
-			tem.writeJavascriptTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file), extensionMetadata);
+			tem.writeJavascriptTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 		}
 	}
 
