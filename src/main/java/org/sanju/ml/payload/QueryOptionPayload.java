@@ -7,9 +7,9 @@ import java.io.File;
  * @author Sanju Thomas
  *
  */
-public class SearchOptionPayload extends Payload{
+public class QueryOptionPayload extends Payload{
 
-	public SearchOptionPayload(final File file) {
+	public QueryOptionPayload(final File file) {
 		super(file);
 	}
 
