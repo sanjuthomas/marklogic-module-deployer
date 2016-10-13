@@ -15,7 +15,7 @@ import org.sanju.ml.payload.RestExtensionPayload;
 public class TestRESTExtensionDeployer extends AbstractTest{
 
 	private RestExtensionPayload mlRestExtensionsPayload;
-	private ModuleDeployer<RestExtensionPayload> mlModuleDeployer;
+	private Deployer<RestExtensionPayload> mlModuleDeployer;
 
 	@Override
 	@Before

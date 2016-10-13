@@ -17,7 +17,7 @@ import com.marklogic.client.io.FileHandle;
  * @author Sanju Thomas
  *
  */
-public class RestExtensionDeployer implements ModuleDeployer<RestExtensionPayload>{
+public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	
 	final DatabaseClient databaseClient;
 	

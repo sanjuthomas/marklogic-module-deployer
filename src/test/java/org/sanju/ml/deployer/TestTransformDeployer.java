@@ -15,7 +15,7 @@ import org.sanju.ml.payload.TransformPayload;
 public class TestTransformDeployer extends AbstractTest{
 
 	private TransformPayload transformsPayload;
-	private ModuleDeployer<TransformPayload> mlModuleDeployer;
+	private Deployer<TransformPayload> mlModuleDeployer;
 
 	@Override
 	@Before

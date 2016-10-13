@@ -14,7 +14,7 @@ import org.sanju.ml.payload.QueryOptionPayload;
  */
 public class TestQueryOptionDeployer extends AbstractTest{
 
-	private ModuleDeployer<QueryOptionPayload> mlModuleDeployer;
+	private Deployer<QueryOptionPayload> mlModuleDeployer;
 	private QueryOptionPayload queryOptionPayload;
 
 

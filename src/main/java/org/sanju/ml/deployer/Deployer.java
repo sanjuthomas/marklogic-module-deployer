@@ -6,7 +6,7 @@ import org.sanju.ml.payload.Payload;
  * @author Sanju Thomas
  *
  */
-public interface ModuleDeployer<T extends Payload> {
+public interface Deployer<T extends Payload> {
 
 	public void deploy(T t);
 }

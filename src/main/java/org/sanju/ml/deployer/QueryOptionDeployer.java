@@ -15,7 +15,7 @@ import com.marklogic.client.io.FileHandle;
  *
  */
 
-public class QueryOptionDeployer implements ModuleDeployer<QueryOptionPayload>{
+public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 
 	final DatabaseClient databaseClient;
 

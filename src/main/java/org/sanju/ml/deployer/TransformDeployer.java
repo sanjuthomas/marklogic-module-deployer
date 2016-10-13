@@ -15,7 +15,7 @@ import com.marklogic.client.io.FileHandle;
  * @author Sanju Thomas
  *
  */
-public class TransformDeployer implements ModuleDeployer<TransformPayload> {
+public class TransformDeployer implements Deployer<TransformPayload> {
 
 	final DatabaseClient databaseClient;
 
