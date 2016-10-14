@@ -35,6 +35,8 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 			tem.writeXQueryTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 		}else if(ContentType.SJS.getType().equalsIgnoreCase(contentType)){
 			tem.writeJavascriptTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
+		}else{
+			throw new IllegalArgumentException(contentType + " is not known!");
 		}
 	}
 

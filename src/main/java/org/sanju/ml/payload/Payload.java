@@ -1,10 +1,6 @@
 package org.sanju.ml.payload;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.marklogic.client.admin.ExtensionMetadata.ScriptLanguage;
 
 /**
  * @author Sanju Thomas
@@ -12,13 +8,7 @@ import com.marklogic.client.admin.ExtensionMetadata.ScriptLanguage;
  */
 public  class Payload {
 
-	protected final static Map<String, ScriptLanguage> fileExtensionLanguageMap = new HashMap<>();
 	private final File file;
-
-	static{
-		fileExtensionLanguageMap.put("js", ScriptLanguage.JAVASCRIPT);
-		fileExtensionLanguageMap.put("xqy", ScriptLanguage.XQUERY);
-	}
 
 	/**
 	 *
