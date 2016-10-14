@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sanju.ml.MLClientFactory;
+import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.payload.RestExtensionPayload;
 
 /**
@@ -21,7 +21,7 @@ public class TestRESTExtensionDeployer extends AbstractTest{
 	@Before
 	public void setup(){
 		super.setup();
-		this.mlModuleDeployer = new RestExtensionDeployer(MLClientFactory.getClient(this.mlApplicationServer));
+		this.mlModuleDeployer = new RestExtensionDeployer(ConnectionManager.getClient(this.mlApplicationServer));
 	}
 
 	@Test

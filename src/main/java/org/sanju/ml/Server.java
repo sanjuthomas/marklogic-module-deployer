@@ -5,12 +5,12 @@ package org.sanju.ml;
  * @author Sanju Thomas
  *
  */
-public class MLServer {
+public class Server {
 
 	private final String host;
-	private final MLCredential credential;
+	private final Credential credential;
 	
-	public MLServer(final String host, final MLCredential credential){
+	public Server(final String host, final Credential credential){
 		this.host = host;
 		this.credential = credential;
 	}
@@ -19,7 +19,7 @@ public class MLServer {
 		return host;
 	}
 
-	public MLCredential getCredential() {
+	public Credential getCredential() {
 		return credential;
 	}
 	

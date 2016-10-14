@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sanju.ml.MLClientFactory;
+import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.payload.TransformPayload;
 
 /**
@@ -21,7 +21,7 @@ public class TestTransformDeployer extends AbstractTest{
 	@Before
 	public void setup(){
 		super.setup();
-		this.mlModuleDeployer = new TransformDeployer(MLClientFactory.getClient(this.mlApplicationServer));
+		this.mlModuleDeployer = new TransformDeployer(ConnectionManager.getClient(this.mlApplicationServer));
 	}
 
 	@Test

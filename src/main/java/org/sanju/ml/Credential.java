@@ -5,12 +5,12 @@ package org.sanju.ml;
  * @author Sanju Thomas
  *
  */
-public class MLCredential {
+public class Credential {
 	
 	private String username;
 	private String password;
 	
-	public MLCredential(final String username, final String password){
+	public Credential(final String username, final String password){
 		this.username = username;
 		this.password = password;
 	}

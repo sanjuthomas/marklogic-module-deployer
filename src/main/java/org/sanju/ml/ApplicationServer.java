@@ -1,38 +1,38 @@
 package org.sanju.ml;
 
 /**
- * 
+ *
  * @author Sanju Thomas
  *
  */
-public class MLApplicationServer {
-	
+public class ApplicationServer {
+
 	private final int port;
 	private final String contentDatabase;
 	private final String moduleDatabase;
-	private final MLServer mlServer;
-	
-	public MLApplicationServer(final MLServer mlServer, final int port, final String contentDatabase, final String moduleDatabase){
+	private final Server mlServer;
+
+	public ApplicationServer(final Server mlServer, final int port, final String contentDatabase, final String moduleDatabase){
 		this.port = port;
 		this.mlServer = mlServer;
 		this.contentDatabase = contentDatabase;
 		this.moduleDatabase = moduleDatabase;
 	}
-	
-	public MLServer getMlServer() {
-		return mlServer;
+
+	public Server getMlServer() {
+		return this.mlServer;
 	}
 
 	public int getPort() {
-		return port;
+		return this.port;
 	}
 
 	public String getContentDatabase() {
-		return contentDatabase;
+		return this.contentDatabase;
 	}
 
 	public String getModuleDatabase() {
-		return moduleDatabase;
+		return this.moduleDatabase;
 	}
 
 	public String name(){
@@ -42,5 +42,5 @@ public class MLApplicationServer {
 		builder.append(this.port);
 		return builder.toString();
 	}
-	
+
 }

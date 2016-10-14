@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sanju.ml.MLClientFactory;
+import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.payload.QueryOptionPayload;
 
 /**
@@ -22,7 +22,7 @@ public class TestQueryOptionDeployer extends AbstractTest{
 	@Before
 	public void setup(){
 		super.setup();
-		this.mlModuleDeployer = new QueryOptionDeployer(MLClientFactory.getClient(this.mlApplicationServer));
+		this.mlModuleDeployer = new QueryOptionDeployer(ConnectionManager.getClient(this.mlApplicationServer));
 		this.queryOptionPayload = new QueryOptionPayload(new File("src/test/resources/query-options/test-query-option.xml"));
 	}
 
