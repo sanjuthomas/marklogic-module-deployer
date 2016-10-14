@@ -1,6 +1,6 @@
 package org.sanju.ml.loader;
 
-import java.util.Properties;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -9,5 +9,5 @@ import java.util.Properties;
  */
 public interface Loader {
 
-	void load(Properties properties);
+	void load() throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException;
 }
