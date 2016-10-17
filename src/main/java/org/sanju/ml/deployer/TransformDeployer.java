@@ -25,6 +25,10 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 
 	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) {
 		this.databaseClient = databaseClient;
+		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.TRANSFORMS.getSourceLocation()));
+		for(final File file : files){
+			this.payloads.add(new TransformPayload(file));
+		}
 	}
 
 	@Override
@@ -41,6 +45,14 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 			tem.writeJavascriptTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 		}else{
 			throw new IllegalArgumentException(contentType + " is not known!");
+		}
+	}
+
+	@Override
+	public void deploy() {
+
+		for(final TransformPayload payload : this.payloads){
+			this.deploy(payload);
 		}
 	}
 

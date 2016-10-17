@@ -26,6 +26,10 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 
 	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties){
 		this.databaseClient = databaseClient;
+		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.OPTIONS.getSourceLocation()));
+		for(final File file : files){
+			this.payloads.add(new QueryOptionPayload(file));
+		}
 	}
 
 	@Override
@@ -35,6 +39,13 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 		final QueryOptionsManager qom =  this.databaseClient.newServerConfigManager().newQueryOptionsManager();
 		qom.writeOptions(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 
+	}
+
+	@Override
+	public void deploy() {
+		for(final QueryOptionPayload payload : this.payloads){
+			this.deploy(payload);
+		}
 	}
 
 }

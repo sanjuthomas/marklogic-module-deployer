@@ -27,6 +27,10 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 
 	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties){
 		this.databaseClient = databaseClient;
+		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.REST_EXT.getSourceLocation()));
+		for(final File file : files){
+			this.payloads.add(new RestExtensionPayload(file));
+		}
 	}
 
 	@Override
@@ -37,6 +41,13 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();
 		extensionMetadata.setScriptLanguage(t.getScriptLanguage());
 		resourceExtensionsManager.writeServices(FilenameUtils.removeExtension(file.getName()), new FileHandle(file), extensionMetadata, new MethodParameters(MethodType.PUT));
+	}
+
+	@Override
+	public void deploy() {
+		for(final RestExtensionPayload payload : this.payloads){
+			this.deploy(payload);
+		}
 	}
 
 }

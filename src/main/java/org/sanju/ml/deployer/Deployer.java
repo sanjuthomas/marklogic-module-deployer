@@ -9,4 +9,6 @@ import org.sanju.ml.payload.Payload;
 public interface Deployer<T extends Payload> {
 
 	void deploy(T t);
+
+	void deploy();
 }
