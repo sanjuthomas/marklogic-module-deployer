@@ -1,6 +1,8 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,9 +22,9 @@ public class TestQueryOptionDeployer extends AbstractTest{
 
 	@Override
 	@Before
-	public void setup(){
+	public void setup() throws FileNotFoundException, IOException{
 		super.setup();
-		this.mlModuleDeployer = new QueryOptionDeployer(ConnectionManager.getClient(this.mlApplicationServer));
+		this.mlModuleDeployer = new QueryOptionDeployer(ConnectionManager.getClient(this.mlApplicationServer), this.properties);
 		this.queryOptionPayload = new QueryOptionPayload(new File("src/test/resources/query-options/test-query-option.xml"));
 	}
 

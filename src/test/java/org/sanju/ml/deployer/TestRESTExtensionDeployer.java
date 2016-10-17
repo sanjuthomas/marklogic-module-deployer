@@ -1,6 +1,8 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,9 +21,9 @@ public class TestRESTExtensionDeployer extends AbstractTest{
 
 	@Override
 	@Before
-	public void setup(){
+	public void setup() throws FileNotFoundException, IOException{
 		super.setup();
-		this.mlModuleDeployer = new RestExtensionDeployer(ConnectionManager.getClient(this.mlApplicationServer));
+		this.mlModuleDeployer = new RestExtensionDeployer(ConnectionManager.getClient(this.mlApplicationServer), this.properties);
 	}
 
 	@Test

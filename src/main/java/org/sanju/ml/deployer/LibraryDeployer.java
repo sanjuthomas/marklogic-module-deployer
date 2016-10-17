@@ -1,6 +1,9 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import org.sanju.ml.payload.LibraryPayload;
 
@@ -16,11 +19,13 @@ import com.marklogic.client.io.Format;
  */
 public class LibraryDeployer implements Deployer<LibraryPayload>{
 
-
 	final DatabaseClient databaseClient;
+	final List<LibraryPayload> payloads = new ArrayList<>();
 
-	public LibraryDeployer(final DatabaseClient databaseClient){
+	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties){
+
 		this.databaseClient = databaseClient;
+
 	}
 
 	@Override

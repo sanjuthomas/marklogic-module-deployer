@@ -1,6 +1,9 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.RestExtensionPayload;
@@ -13,21 +16,22 @@ import com.marklogic.client.admin.ResourceExtensionsManager.MethodParameters;
 import com.marklogic.client.io.FileHandle;
 
 /**
- * 
+ *
  * @author Sanju Thomas
  *
  */
 public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
-	
+
 	final DatabaseClient databaseClient;
-	
-	public RestExtensionDeployer(final DatabaseClient databaseClient){
+	final List<RestExtensionPayload> payloads = new ArrayList<>();
+
+	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties){
 		this.databaseClient = databaseClient;
 	}
 
 	@Override
-	public void deploy(RestExtensionPayload t) {
-		
+	public void deploy(final RestExtensionPayload t) {
+
 		final ResourceExtensionsManager resourceExtensionsManager = this.databaseClient.newServerConfigManager().newResourceExtensionsManager();
 		final File file = t.getFile();
 		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();

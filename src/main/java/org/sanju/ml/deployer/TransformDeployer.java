@@ -1,6 +1,9 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.PayloadHelper.ContentType;
@@ -18,8 +21,9 @@ import com.marklogic.client.io.FileHandle;
 public class TransformDeployer implements Deployer<TransformPayload> {
 
 	final DatabaseClient databaseClient;
+	final List<TransformPayload> payloads = new ArrayList<>();
 
-	public TransformDeployer(final DatabaseClient databaseClient) {
+	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) {
 		this.databaseClient = databaseClient;
 	}
 

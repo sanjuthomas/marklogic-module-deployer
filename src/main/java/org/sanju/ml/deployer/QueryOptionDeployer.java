@@ -1,6 +1,9 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.QueryOptionPayload;
@@ -17,9 +20,11 @@ import com.marklogic.client.io.FileHandle;
 
 public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 
+	final List<QueryOptionPayload> payloads = new ArrayList<>();
+
 	final DatabaseClient databaseClient;
 
-	public QueryOptionDeployer(final DatabaseClient databaseClient){
+	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties){
 		this.databaseClient = databaseClient;
 	}
 
