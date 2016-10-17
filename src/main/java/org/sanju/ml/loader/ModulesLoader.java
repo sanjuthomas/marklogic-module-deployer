@@ -1,11 +1,17 @@
 package org.sanju.ml.loader;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Properties;
 
+import org.sanju.ml.ApplicationServer;
+import org.sanju.ml.ConnectionManager;
+import org.sanju.ml.Credential;
+import org.sanju.ml.Server;
 import org.sanju.ml.deployer.ModuleTypes;
-import org.sanju.ml.payload.Payload;
+import org.sanju.ml.plugin.PropertyConstants;
+
+import com.marklogic.client.DatabaseClient;
 
 /**
  *
@@ -27,12 +33,22 @@ public class ModulesLoader implements Loader{
 	public void load() throws InstantiationException, IllegalAccessException, ClassNotFoundException,
 	NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
 
+		final String host = this.properties.getProperty(PropertyConstants.ML_HOST);
+		final Integer port = Integer.valueOf(this.properties.getProperty(PropertyConstants.ML_PORT));
+		final String username = this.properties.getProperty(PropertyConstants.ML_USERNAME);
+		final String password = this.properties.getProperty(PropertyConstants.ML_PASSWORD);
+		final String contentDatabase = this.properties.getProperty(PropertyConstants.ML_CONTENT_DATABASE);
+		final String moduleDatabase = this.properties.getProperty(PropertyConstants.ML_MODULE_DATABASE);
+		final Credential credential = new Credential(username, password);
+		final Server server = new Server(host, credential);
+		final ApplicationServer applicationServer = new ApplicationServer(server, port, contentDatabase, moduleDatabase);
+		final DatabaseClient databasecClient = ConnectionManager.getClient(applicationServer);
+
 		final ModuleTypes[] types = ModuleTypes.values();
 		for(final ModuleTypes type : types){
-			final Object deployer = Class.forName(this.properties.getProperty(type.getDeployerClass())).newInstance();
-			final Object payload = Class.forName(this.properties.getProperty(type.getPayloadClass())).newInstance();
-			final Method method = deployer.getClass().getMethod("deploy", Payload.class);
-			method.invoke(deployer, payload);
+			final Constructor<?> constructor = Class.forName(this.properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
+			final Object instance = constructor.newInstance(databasecClient, this.properties);
+
 		}
 	}
 

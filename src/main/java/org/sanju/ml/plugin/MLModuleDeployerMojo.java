@@ -2,7 +2,7 @@ package org.sanju.ml.plugin;
 
 /**
  * Maven plugin to deploy the MarkLogic modules into MarkLogic module database.
- * 
+ *
  * @author Sanju Thomas
  * @date 20th Sep, 2016
  *
@@ -20,10 +20,10 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 
 	@Parameter( property = "ml.configuration", defaultValue = "${basedir}" )
 	private String mlConfiguration;
-	
+
+	@Override
 	public void execute() throws MojoExecutionException {
-		
-		
-		System.out.println(mlConfiguration);
+
+
 	}
 }

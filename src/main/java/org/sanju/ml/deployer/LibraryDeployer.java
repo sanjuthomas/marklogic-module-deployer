@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.sanju.ml.payload.LibraryPayload;
+import org.sanju.ml.plugin.PropertyConstants;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.admin.ExtensionLibrariesManager;
@@ -19,8 +20,6 @@ import com.marklogic.client.io.Format;
  */
 public class LibraryDeployer implements Deployer<LibraryPayload>{
 
-	private static final String LIBRARY_LOCATION_PROPERTY = "library.prefix";
-
 	final DatabaseClient databaseClient;
 	final List<LibraryPayload> payloads = new ArrayList<>();
 
@@ -28,7 +27,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
 		for(final File file : files){
-			this.payloads.add(new LibraryPayload(LIBRARY_LOCATION_PROPERTY, file));
+			this.payloads.add(new LibraryPayload(PropertyConstants.LIBRARY_LOCATION_PROPERTY, file));
 		}
 	}
 
