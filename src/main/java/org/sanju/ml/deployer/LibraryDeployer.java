@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.sanju.ml.payload.LibraryPayload;
 import org.sanju.ml.plugin.PropertyConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.admin.ExtensionLibrariesManager;
@@ -21,6 +23,7 @@ import com.marklogic.client.io.Format;
  */
 public class LibraryDeployer implements Deployer<LibraryPayload>{
 
+	private static final Logger logger = LoggerFactory.getLogger(LibraryDeployer.class);
 	final DatabaseClient databaseClient;
 	final List<LibraryPayload> payloads = new ArrayList<>();
 
@@ -35,6 +38,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	@Override
 	public void deploy(final LibraryPayload t) {
 
+		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
 		final ExtensionLibrariesManager elm = this.databaseClient.newServerConfigManager().newExtensionLibrariesManager();
 		final File file = t.getFile();
 		elm.write(t.getLibraryPrefix() + file.getName(), new FileHandle(file).withFormat(Format.TEXT));

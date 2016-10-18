@@ -29,6 +29,11 @@ import org.sanju.ml.deployer.ModuleTypes;
 
 import com.marklogic.client.DatabaseClient;
 
+/**
+ *
+ * @author Sanju Thomas
+ *
+ */
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
 public class MLModuleDeployerMojo extends AbstractMojo {
 

@@ -3,6 +3,9 @@ package org.sanju.ml;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.DatabaseClientFactory.Authentication;
@@ -14,6 +17,8 @@ import com.marklogic.client.DatabaseClientFactory.Authentication;
  */
 public class ConnectionManager {
 
+
+	private static final Logger logger = LoggerFactory.getLogger(ConnectionManager.class);
 	private static final Map<String, DatabaseClient> clientMap = new HashMap<>();
 
 	public static final DatabaseClient getClient(
@@ -31,6 +36,8 @@ public class ConnectionManager {
 							Authentication.DIGEST);
 
 			clientMap.put(mlApplicationServer.name(), databaseClient);
+		}else{
+			logger.info("Returning client from the cache.");
 		}
 
 		return clientMap.get(mlApplicationServer.name());

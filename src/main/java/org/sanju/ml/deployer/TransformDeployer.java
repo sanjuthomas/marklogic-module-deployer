@@ -9,6 +9,8 @@ import java.util.Properties;
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.PayloadHelper.ContentType;
 import org.sanju.ml.payload.TransformPayload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.admin.TransformExtensionsManager;
@@ -21,6 +23,7 @@ import com.marklogic.client.io.FileHandle;
  */
 public class TransformDeployer implements Deployer<TransformPayload> {
 
+	private static final Logger logger = LoggerFactory.getLogger(TransformDeployer.class);
 	final DatabaseClient databaseClient;
 	final List<TransformPayload> payloads = new ArrayList<>();
 
@@ -34,6 +37,7 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 
 	@Override
 	public void deploy(final TransformPayload t) {
+		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
 		final TransformExtensionsManager tem = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
 		final File file = t.getFile();
 		final String contentType = t.getContentType();
@@ -45,6 +49,7 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 		}else if(ContentType.SJS.getType().equalsIgnoreCase(contentType)){
 			tem.writeJavascriptTransform(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));
 		}else{
+			logger.error("Content type {}  is not known.", contentType);
 			throw new IllegalArgumentException(contentType + " is not known!");
 		}
 	}

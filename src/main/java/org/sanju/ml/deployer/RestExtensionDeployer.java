@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import org.apache.commons.io.FilenameUtils;
 import org.sanju.ml.payload.RestExtensionPayload;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.admin.ExtensionMetadata;
@@ -23,6 +25,7 @@ import com.marklogic.client.io.FileHandle;
  */
 public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 
+	private static final Logger logger = LoggerFactory.getLogger(RestExtensionDeployer.class);
 	final DatabaseClient databaseClient;
 	final List<RestExtensionPayload> payloads = new ArrayList<>();
 
@@ -36,7 +39,7 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 
 	@Override
 	public void deploy(final RestExtensionPayload t) {
-
+		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
 		final ResourceExtensionsManager resourceExtensionsManager = this.databaseClient.newServerConfigManager().newResourceExtensionsManager();
 		final File file = t.getFile();
 		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();
