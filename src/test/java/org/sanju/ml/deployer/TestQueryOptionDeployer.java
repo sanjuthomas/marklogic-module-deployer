@@ -1,5 +1,7 @@
 package org.sanju.ml.deployer;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,6 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.payload.QueryOptionPayload;
+
+import com.marklogic.client.admin.QueryOptionsManager;
+import com.marklogic.client.io.Format;
+import com.marklogic.client.io.StringHandle;
 
 /**
  *
@@ -31,5 +37,11 @@ public class TestQueryOptionDeployer extends AbstractTest{
 	@Test
 	public void shouldLoadQueryOptions(){
 		this.mlModuleDeployer.deploy(this.queryOptionPayload);
+		final QueryOptionsManager qom =  this.databaseClient.newServerConfigManager().newQueryOptionsManager();
+		final StringHandle readHandle = new StringHandle();
+		readHandle.setFormat(Format.XML);
+		qom.readOptions("DefaultTermOpt", readHandle);
+		final String output = readHandle.get();
+		assertNotNull(output);
 	}
 }

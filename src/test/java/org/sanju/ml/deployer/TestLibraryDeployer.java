@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.payload.LibraryPayload;
 
+import com.marklogic.client.admin.ExtensionLibrariesManager;
+import com.marklogic.client.io.StringHandle;
+
 /**
  *
  * @author Sanju Thomas
@@ -30,5 +33,7 @@ public class TestLibraryDeployer extends AbstractTest{
 	@Test
 	public void shoulDeployLibraries(){
 		this.mlModuleDeployer.deploy(this.libraryPayload);
+		final ExtensionLibrariesManager elm = this.databaseClient.newServerConfigManager().newExtensionLibrariesManager();
+		elm.read("/ext/libraries/test-lib.sjs", new StringHandle()).get();
 	}
 }
