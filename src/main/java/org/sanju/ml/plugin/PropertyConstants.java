@@ -12,8 +12,9 @@ public class PropertyConstants {
 	public static final String ML_USERNAME = "ml.username";
 	public static final String ML_PASSWORD = "ml.password";
 	public static final String ML_MODULE_PASSWORD = "ml.module.database";
-	public static final String LIBRARY_LOCATION_PROPERTY = "library.prefix";
+	public static final String ML_LIBRARY_LOCATION_PROPERTY = "library.prefix";
 	public static final String ML_MODULE_DATABASE = "ml.module.database";
 	public static final String ML_CONTENT_DATABASE = "ml.content.database";
+	public static final String ML_MODULE_DEPLOYER_METHOD = "deploy";
 
 }

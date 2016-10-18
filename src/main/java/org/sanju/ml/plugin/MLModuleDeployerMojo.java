@@ -60,7 +60,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 				final Constructor<?> constructor = Class.forName(properties.getProperty(type.getDeployerClass()))
 						.getConstructor(DatabaseClient.class, Properties.class);
 				final Object instance = constructor.newInstance(databasecClient, properties);
-				final Method method = instance.getClass().getMethod("deploy");
+				final Method method = instance.getClass().getMethod(PropertyConstants.ML_MODULE_DEPLOYER_METHOD);
 				method.invoke(instance);
 			}
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IOException

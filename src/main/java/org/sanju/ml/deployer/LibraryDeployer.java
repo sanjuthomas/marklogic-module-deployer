@@ -27,7 +27,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
 		for(final File file : files){
-			this.payloads.add(new LibraryPayload(PropertyConstants.LIBRARY_LOCATION_PROPERTY, file));
+			this.payloads.add(new LibraryPayload(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY, file));
 		}
 	}
 
