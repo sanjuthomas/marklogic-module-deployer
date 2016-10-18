@@ -33,7 +33,7 @@ public class TestLibraryDeployer extends AbstractTest{
 	@Test
 	public void shoulDeployLibraries(){
 		this.mlModuleDeployer.deploy(this.libraryPayload);
-		final ExtensionLibrariesManager elm = this.databaseClient.newServerConfigManager().newExtensionLibrariesManager();
+		final ExtensionLibrariesManager elm = ConnectionManager.getClient(this.mlApplicationServer).newServerConfigManager().newExtensionLibrariesManager();
 		elm.read("/ext/libraries/test-lib.sjs", new StringHandle()).get();
 	}
 }
