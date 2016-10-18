@@ -1,6 +1,7 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -23,7 +24,7 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	final DatabaseClient databaseClient;
 	final List<TransformPayload> payloads = new ArrayList<>();
 
-	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) {
+	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException {
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.TRANSFORMS.getSourceLocation()));
 		for(final File file : files){

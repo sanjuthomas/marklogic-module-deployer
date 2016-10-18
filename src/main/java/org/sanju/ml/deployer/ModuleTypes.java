@@ -9,7 +9,7 @@ public enum ModuleTypes{
 
 	REST_EXT("rest.extension.deployer", "rest.extension.payload", "rest.extension.location"),
 	OPTIONS("query.options.deployer", "query.options.payload", "query.options.location"),
-	TRANSFORMS("transform.deployer", "transform.payload", "transform.location"),
+	TRANSFORMS("transforms.deployer", "transforms.payload", "transforms.location"),
 	LIBRARIES("libraries.deployer", "libraries.payload", "libraries.location");
 
 	private final String deployerClass;

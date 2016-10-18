@@ -1,6 +1,7 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -24,7 +25,7 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 
 	final DatabaseClient databaseClient;
 
-	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties){
+	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.OPTIONS.getSourceLocation()));
 		for(final File file : files){

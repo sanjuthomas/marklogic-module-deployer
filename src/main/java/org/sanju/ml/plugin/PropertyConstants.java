@@ -8,7 +8,7 @@ package org.sanju.ml.plugin;
 public class PropertyConstants {
 
 	public static final String ML_HOST = "ml.host";
-	public static final String ML_PORT = "ml.port";
+	public static final String ML_PORT = "ml.appserver.port";
 	public static final String ML_USERNAME = "ml.username";
 	public static final String ML_PASSWORD = "ml.password";
 	public static final String ML_MODULE_PASSWORD = "ml.module.database";

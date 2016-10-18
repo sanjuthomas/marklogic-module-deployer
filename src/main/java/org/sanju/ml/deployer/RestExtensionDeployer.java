@@ -1,6 +1,7 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -25,7 +26,7 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	final DatabaseClient databaseClient;
 	final List<RestExtensionPayload> payloads = new ArrayList<>();
 
-	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties){
+	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.REST_EXT.getSourceLocation()));
 		for(final File file : files){

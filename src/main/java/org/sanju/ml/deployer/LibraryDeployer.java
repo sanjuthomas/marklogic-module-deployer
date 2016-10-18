@@ -1,6 +1,7 @@
 package org.sanju.ml.deployer;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -23,11 +24,11 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	final DatabaseClient databaseClient;
 	final List<LibraryPayload> payloads = new ArrayList<>();
 
-	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties){
+	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
 		for(final File file : files){
-			this.payloads.add(new LibraryPayload(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY, file));
+			this.payloads.add(new LibraryPayload(properties.getProperty(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY), file));
 		}
 	}
 
