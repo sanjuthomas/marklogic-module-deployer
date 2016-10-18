@@ -2,6 +2,7 @@ package org.sanju.ml.loader;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Properties;
 
 import org.sanju.ml.ApplicationServer;
@@ -48,7 +49,8 @@ public class ModulesLoader implements Loader{
 		for(final ModuleTypes type : types){
 			final Constructor<?> constructor = Class.forName(this.properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
 			final Object instance = constructor.newInstance(databasecClient, this.properties);
-
+			final Method method = instance.getClass().getMethod("deploy");
+			method.invoke(instance);
 		}
 	}
 
