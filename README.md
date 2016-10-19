@@ -26,6 +26,6 @@ MarkLogic Module Deployer is written to deploy the MarkLogic server side artifac
 
 Please create an issue in github or send a note to ml@sanju.org.
 
-# Make MarkLogic Module Deployer Maven Plugin better
+# Make MarkLogic Module Deployer Maven Plugin better.
 
 If you like to contribute, please refer [here](https://github.com/sanjuthomas/marklogic-module-deployer/blob/master/CONTRIBUTING.md)
