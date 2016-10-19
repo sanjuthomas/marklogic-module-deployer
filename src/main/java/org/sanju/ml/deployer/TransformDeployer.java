@@ -24,8 +24,8 @@ import com.marklogic.client.io.FileHandle;
 public class TransformDeployer implements Deployer<TransformPayload> {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransformDeployer.class);
-	final DatabaseClient databaseClient;
-	final List<TransformPayload> payloads = new ArrayList<>();
+	private final DatabaseClient databaseClient;
+	private final List<TransformPayload> payloads = new ArrayList<>();
 
 	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException {
 		this.databaseClient = databaseClient;

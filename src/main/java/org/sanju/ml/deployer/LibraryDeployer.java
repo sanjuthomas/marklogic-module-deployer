@@ -24,8 +24,8 @@ import com.marklogic.client.io.Format;
 public class LibraryDeployer implements Deployer<LibraryPayload>{
 
 	private static final Logger logger = LoggerFactory.getLogger(LibraryDeployer.class);
-	final DatabaseClient databaseClient;
-	final List<LibraryPayload> payloads = new ArrayList<>();
+	private final DatabaseClient databaseClient;
+	private final List<LibraryPayload> payloads = new ArrayList<>();
 
 	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;

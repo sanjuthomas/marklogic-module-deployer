@@ -26,8 +26,8 @@ import com.marklogic.client.io.FileHandle;
 public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 
 	private static final Logger logger = LoggerFactory.getLogger(RestExtensionDeployer.class);
-	final DatabaseClient databaseClient;
-	final List<RestExtensionPayload> payloads = new ArrayList<>();
+	private final DatabaseClient databaseClient;
+	private final List<RestExtensionPayload> payloads = new ArrayList<>();
 
 	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;

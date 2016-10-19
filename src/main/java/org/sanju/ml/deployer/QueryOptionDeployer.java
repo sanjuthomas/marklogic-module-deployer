@@ -24,8 +24,8 @@ import com.marklogic.client.io.FileHandle;
 public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 
 	private static final Logger logger = LoggerFactory.getLogger(QueryOptionDeployer.class);
-	final List<QueryOptionPayload> payloads = new ArrayList<>();
-	final DatabaseClient databaseClient;
+	private final List<QueryOptionPayload> payloads = new ArrayList<>();
+	private final DatabaseClient databaseClient;
 
 	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
