@@ -1,35 +1,43 @@
 package org.sanju.ml.deployer;
 
 /**
+ * Enumeration that encapsulate the deployer and location properties of various types of MarkLogic server side artifacts.
  *
  * @author Sanju Thomas
  *
  */
-public enum ModuleTypes{
+public enum ModuleTypes {
 
-	REST_EXT("rest.extension.deployer", "rest.extension.payload", "rest.extension.location"),
-	OPTIONS("query.options.deployer", "query.options.payload", "query.options.location"),
-	TRANSFORMS("transforms.deployer", "transforms.payload", "transforms.location"),
-	LIBRARIES("libraries.deployer", "libraries.payload", "libraries.location");
+	REST_EXT("rest.extension.deployer", "rest.extension.location"),
+	OPTIONS("query.options.deployer", "query.options.location"),
+	TRANSFORMS("transforms.deployer", "transforms.location"),
+	LIBRARIES("libraries.deployer", "libraries.location");
 
 	private final String deployerClass;
-	private final String payloadClass;
 	private final String sourceLocation;
 
-	ModuleTypes(final String deployer, final String payload, final String location){
+	/**
+	 *
+	 * @param deployer
+	 * @param location
+	 */
+	ModuleTypes(final String deployer, final String location) {
 		this.deployerClass = deployer;
-		this.payloadClass = payload;
 		this.sourceLocation = location;
 	}
 
+	/**
+	 *
+	 * @return deployerClass
+	 */
 	public String getDeployerClass() {
 		return this.deployerClass;
 	}
 
-	public String getPayloadClass() {
-		return this.payloadClass;
-	}
-
+	/**
+	 *
+	 * @return sourceLocation
+	 */
 	public String getSourceLocation() {
 		return this.sourceLocation;
 	}
