@@ -32,7 +32,7 @@ public abstract class AbstractTest {
 		this.properties = new Properties();
 		this.properties.load(new FileInputStream(new File("src/test/resources/ml-server-config.properties")));
 		this.mlServer = new Server("localhost", new Credential("admin", "admin"));
-		this.mlApplicationServer = new ApplicationServer(this.mlServer, 15000, "azsearch-content", "azsearch-modules");
+		this.mlApplicationServer = new ApplicationServer(this.mlServer, 15000);
 		this.databaseClient = ConnectionManager.getClient(this.mlApplicationServer);
 	}
 

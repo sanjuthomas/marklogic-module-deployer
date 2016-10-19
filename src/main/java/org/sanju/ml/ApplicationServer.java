@@ -8,15 +8,11 @@ package org.sanju.ml;
 public class ApplicationServer {
 
 	private final int port;
-	private final String contentDatabase;
-	private final String moduleDatabase;
 	private final Server mlServer;
 
-	public ApplicationServer(final Server mlServer, final int port, final String contentDatabase, final String moduleDatabase){
+	public ApplicationServer(final Server mlServer, final int port){
 		this.port = port;
 		this.mlServer = mlServer;
-		this.contentDatabase = contentDatabase;
-		this.moduleDatabase = moduleDatabase;
 	}
 
 	public Server getMlServer() {
@@ -25,14 +21,6 @@ public class ApplicationServer {
 
 	public int getPort() {
 		return this.port;
-	}
-
-	public String getContentDatabase() {
-		return this.contentDatabase;
-	}
-
-	public String getModuleDatabase() {
-		return this.moduleDatabase;
 	}
 
 	public String name(){

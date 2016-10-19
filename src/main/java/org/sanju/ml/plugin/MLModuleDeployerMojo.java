@@ -58,12 +58,9 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			final Integer port = Integer.valueOf(properties.getProperty(PropertyConstants.ML_PORT));
 			final String username = properties.getProperty(PropertyConstants.ML_USERNAME);
 			final String password = properties.getProperty(PropertyConstants.ML_PASSWORD);
-			final String contentDatabase = properties.getProperty(PropertyConstants.ML_CONTENT_DATABASE);
-			final String moduleDatabase = properties.getProperty(PropertyConstants.ML_MODULE_DATABASE);
 			final Credential credential = new Credential(username, password);
 			final Server server = new Server(host, credential);
-			final ApplicationServer applicationServer = new ApplicationServer(server, port, contentDatabase,
-					moduleDatabase);
+			final ApplicationServer applicationServer = new ApplicationServer(server, port);
 			databasecClient = ConnectionManager.getClient(applicationServer);
 			final ModuleTypes[] types = ModuleTypes.values();
 			for (final ModuleTypes type : types) {

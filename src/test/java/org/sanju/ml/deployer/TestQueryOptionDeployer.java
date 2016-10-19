@@ -40,7 +40,7 @@ public class TestQueryOptionDeployer extends AbstractTest{
 		final QueryOptionsManager qom =  this.databaseClient.newServerConfigManager().newQueryOptionsManager();
 		final StringHandle readHandle = new StringHandle();
 		readHandle.setFormat(Format.XML);
-		qom.readOptions("DefaultTermOpt", readHandle);
+		qom.readOptions("test-query-option", readHandle);
 		final String output = readHandle.get();
 		assertNotNull(output);
 	}

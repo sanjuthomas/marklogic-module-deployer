@@ -31,7 +31,6 @@ public class ConnectionManager {
 			final DatabaseClient databaseClient = DatabaseClientFactory
 					.newClient(mlApplicationServer.getMlServer().getHost(),
 							mlApplicationServer.getPort(),
-							mlApplicationServer.getModuleDatabase(),
 							mlApplicationServer.getMlServer().getCredential().getUsername(),
 							mlApplicationServer.getMlServer().getCredential().getPassword(),
 							Authentication.DIGEST);
