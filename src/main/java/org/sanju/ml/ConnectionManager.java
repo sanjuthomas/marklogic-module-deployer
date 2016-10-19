@@ -27,6 +27,7 @@ public class ConnectionManager {
 		final DatabaseClient client = clientMap.get(mlApplicationServer.name());
 
 		if (null == client) {
+			logger.info("Creating a new connection for port {} ", mlApplicationServer.getPort());
 			final DatabaseClient databaseClient = DatabaseClientFactory
 					.newClient(mlApplicationServer.getMlServer().getHost(),
 							mlApplicationServer.getPort(),
@@ -44,8 +45,10 @@ public class ConnectionManager {
 	}
 
 	public static void close(final DatabaseClient client){
-		client.release();
-		clientMap.remove(name(client));
+		if(null != client){
+			client.release();
+			clientMap.remove(name(client));
+		}
 	}
 
 	private static String name(final DatabaseClient client){

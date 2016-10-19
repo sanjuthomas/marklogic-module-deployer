@@ -1,5 +1,7 @@
 package org.sanju.ml.deployer;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,6 +36,6 @@ public class TestLibraryDeployer extends AbstractTest{
 	public void shoulDeployLibraries(){
 		this.mlModuleDeployer.deploy(this.libraryPayload);
 		final ExtensionLibrariesManager elm = ConnectionManager.getClient(this.mlApplicationServer).newServerConfigManager().newExtensionLibrariesManager();
-		elm.read("/ext/libraries/test-lib.sjs", new StringHandle()).get();
+		assertNotNull(elm.read("/ext/libraries/test-lib.sjs", new StringHandle()).get());
 	}
 }

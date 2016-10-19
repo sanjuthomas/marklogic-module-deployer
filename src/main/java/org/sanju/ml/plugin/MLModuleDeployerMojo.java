@@ -26,6 +26,8 @@ import org.sanju.ml.ConnectionManager;
 import org.sanju.ml.Credential;
 import org.sanju.ml.Server;
 import org.sanju.ml.deployer.ModuleTypes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.marklogic.client.DatabaseClient;
 
@@ -37,6 +39,8 @@ import com.marklogic.client.DatabaseClient;
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
 public class MLModuleDeployerMojo extends AbstractMojo {
 
+	private static final Logger logger = LoggerFactory.getLogger(MLModuleDeployerMojo.class);
+
 	@Parameter(property = "ml.configuration", defaultValue = "${basedir}/src/main/resources/ml-server-config.properties")
 	private String mlConfiguration;
 
@@ -46,6 +50,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 
 	@Override
 	public void execute() throws MojoExecutionException {
+		DatabaseClient databasecClient = null;
 		try {
 			final Properties properties = new Properties();
 			properties.load(new FileInputStream(new File(this.mlConfiguration)));
@@ -59,7 +64,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			final Server server = new Server(host, credential);
 			final ApplicationServer applicationServer = new ApplicationServer(server, port, contentDatabase,
 					moduleDatabase);
-			final DatabaseClient databasecClient = ConnectionManager.getClient(applicationServer);
+			databasecClient = ConnectionManager.getClient(applicationServer);
 			final ModuleTypes[] types = ModuleTypes.values();
 			for (final ModuleTypes type : types) {
 				final Constructor<?> constructor = Class.forName(properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
@@ -70,7 +75,9 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IOException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error("Error occurred while execting MarkLogic Module Deployer Maven Plugin", e.getMessage(), e);
+		} finally{
+			ConnectionManager.close(databasecClient);
 		}
 	}
 
