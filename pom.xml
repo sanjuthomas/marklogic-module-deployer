@@ -4,7 +4,7 @@
 
 	<groupId>org.sanju</groupId>
 	<artifactId>marklogic-module-deployer</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>marklogic-module-deployer Maven Plugin</name>
