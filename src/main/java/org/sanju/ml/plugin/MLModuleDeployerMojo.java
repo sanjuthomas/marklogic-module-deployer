@@ -54,6 +54,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 
 	@Override
 	public void execute() throws MojoExecutionException {
+		logger.info("Starting the ml-module-deployer plugin execution. ml.configuration file is {}", this.mlConfiguration);
 		DatabaseClient databasecClient = null;
 		try {
 			final Properties properties = new Properties();
@@ -79,6 +80,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			logger.error("Error occurred while execting MarkLogic Module Deployer Maven Plugin", e.getMessage(), e);
 		} finally{
 			ConnectionManager.close(databasecClient);
+			logger.info("Ending the ml-module-deployer plugin execution.");
 		}
 	}
 
