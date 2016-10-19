@@ -9,7 +9,7 @@ marklogic-module-deployer welcomes new contributors. This document will guide yo
  
 ## <a name="question"></a> Got a Question or Problem?
 
-If you have questions about how to use marklogic-module-deployer, please direct these to the ml@sanju.org
+If you have questions about how to use marklogic-module-deployer, please direct those to the ml@sanju.org
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by 
@@ -17,8 +17,7 @@ submitting an issue to our [GitHub Issue Tracker][issue tracker]. Even better yo
 with a fix for the issue you filed.
 
 ## <a name="feature"></a> Want a Feature?
-You can request a new feature by submitting an issue to our [GitHub Issue Tracker][issue tracker].  
-If you would like to implement a new feature then first create a new issue and discuss it with project maintainer.
+You can request a new feature by submitting an issue to our [GitHub Issue Tracker][issue tracker].  If you would like to implement a new feature then first create a new issue and discuss it with project maintainer.
 
 ## <a name="submit"></a> Submission Guidelines
 
@@ -43,9 +42,8 @@ Fork the project [on GitHub](https://github.com/sanjuthomas/marklogic-module-dep
 your copy.
 
 ```sh
-$ git clone git@github.com:username/marklogic-module-deployer.git
+$ git clone https://github.com/sanjuthomas/marklogic-module-deployer.git
 $ cd marklogic-module-deployer
-$ git remote add upstream git://github.com/sanjuthomas/marklogic-module-deployer.git
 ```
 
 
