@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.ConnectionManager;
@@ -34,14 +35,18 @@ public class TestQueryOptionDeployer extends AbstractTest{
 		this.queryOptionPayload = new QueryOptionPayload(new File("src/test/resources/query-options/test-query-option.xml"));
 	}
 
+	@After
+	public void tearDown(){
+		ConnectionManager.close(this.databaseClient);
+	}
+
+
 	@Test
 	public void shouldLoadQueryOptions(){
 		this.mlModuleDeployer.deploy(this.queryOptionPayload);
 		final QueryOptionsManager qom =  this.databaseClient.newServerConfigManager().newQueryOptionsManager();
 		final StringHandle readHandle = new StringHandle();
 		readHandle.setFormat(Format.XML);
-		qom.readOptions("test-query-option", readHandle);
-		final String output = readHandle.get();
-		assertNotNull(output);
+		assertNotNull(qom.readOptions("test-query-option", readHandle).get());
 	}
 }

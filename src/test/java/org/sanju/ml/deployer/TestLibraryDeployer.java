@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.ConnectionManager;
@@ -30,6 +31,11 @@ public class TestLibraryDeployer extends AbstractTest{
 		super.setup();
 		this.mlModuleDeployer = new LibraryDeployer(ConnectionManager.getClient(this.mlApplicationServer), this.properties);
 		this.libraryPayload = new LibraryPayload("/ext/libraries/", new File("src/test/resources/libraries/test-lib.sjs"));
+	}
+
+	@After
+	public void tearDown(){
+		ConnectionManager.close(this.databaseClient);
 	}
 
 	@Test

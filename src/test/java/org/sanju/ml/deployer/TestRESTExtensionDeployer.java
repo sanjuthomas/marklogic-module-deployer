@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sanju.ml.ConnectionManager;
@@ -31,6 +32,11 @@ public class TestRESTExtensionDeployer extends AbstractTest{
 		super.setup();
 		this.mlModuleDeployer = new RestExtensionDeployer(ConnectionManager.getClient(this.mlApplicationServer), this.properties);
 		this.resourceExtensionsManager = this.databaseClient.newServerConfigManager().newResourceExtensionsManager();
+	}
+
+	@After
+	public void tearDown(){
+		ConnectionManager.close(this.databaseClient);
 	}
 
 	@Test
