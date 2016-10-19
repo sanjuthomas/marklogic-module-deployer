@@ -44,6 +44,10 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 	@Parameter(property = "ml.configuration", defaultValue = "${basedir}/src/main/resources/ml-server-config.properties")
 	private String mlConfiguration;
 
+	/**
+	 *
+	 * @param mlConfiguration
+	 */
 	public void setMlConfiguration(final String mlConfiguration) {
 		this.mlConfiguration = mlConfiguration;
 	}

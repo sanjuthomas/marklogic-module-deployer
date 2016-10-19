@@ -10,12 +10,20 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
+ * All the utitlity methods that can be leveraged across different deployer implementations.
  *
  * @author Sanju Thomas
  *
  */
 public class ModuleUtils {
 
+	/**
+	 * Load all files from a given location.
+	 *
+	 * @param sourceCodeLocation
+	 * @return
+	 * @throws IOException
+	 */
 	public static List<File> loadAssets(final String sourceCodeLocation) throws IOException{
 		final List<File> files = new ArrayList<>();
 		try(Stream<Path> paths = Files.walk(Paths.get(sourceCodeLocation))) {

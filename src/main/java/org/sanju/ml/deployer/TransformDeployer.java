@@ -17,6 +17,7 @@ import com.marklogic.client.admin.TransformExtensionsManager;
 import com.marklogic.client.io.FileHandle;
 
 /**
+ * Deployer implementation to deploy all transform files to MarkLogic module database.
  *
  * @author Sanju Thomas
  *
@@ -27,6 +28,15 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	private final DatabaseClient databaseClient;
 	private final List<TransformPayload> payloads = new ArrayList<>();
 
+	/**
+	 *
+	 * @param databaseClient
+	 * @param properties
+	 * @throws IOException
+	 * @see {@link DatabaseClient}
+	 * @see {@link Properties}
+	 * @see {@link IOException}
+	 */
 	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException {
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.TRANSFORMS.getSourceLocation()));
@@ -35,6 +45,9 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 		}
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void deploy(final TransformPayload t) {
 		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());

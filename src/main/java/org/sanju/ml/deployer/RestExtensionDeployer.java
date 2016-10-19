@@ -19,6 +19,7 @@ import com.marklogic.client.admin.ResourceExtensionsManager.MethodParameters;
 import com.marklogic.client.io.FileHandle;
 
 /**
+ * Deployer implementation to deploy all rest extension files to MarkLogic module database.
  *
  * @author Sanju Thomas
  *
@@ -29,6 +30,16 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	private final DatabaseClient databaseClient;
 	private final List<RestExtensionPayload> payloads = new ArrayList<>();
 
+	/**
+	 * Create an instance of the RestExtensionDeployer class.
+	 *
+	 * @param databaseClient
+	 * @param properties
+	 * @throws IOException
+	 * @see {@link DatabaseClient}
+	 * @see {@link Properties}
+	 * @see {@link IOException}
+	 */
 	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.REST_EXT.getSourceLocation()));
@@ -37,6 +48,11 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 		}
 	}
 
+	/**
+	 * Deploy a given instance of the RestExtensionPayload into MarkLogic module database.
+	 *
+	 * @param restExtensionPayload
+	 */
 	@Override
 	public void deploy(final RestExtensionPayload t) {
 		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
@@ -47,6 +63,11 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 		resourceExtensionsManager.writeServices(FilenameUtils.removeExtension(file.getName()), new FileHandle(file), extensionMetadata, new MethodParameters(MethodType.PUT));
 	}
 
+	/**
+	 * Deploy all the instances of the RestExtensionPayload available to the MarkLogic module database.
+	 * See the constructor of this class to see how the RestExtensionPayload instances are created.
+	 *
+	 */
 	@Override
 	public void deploy() {
 		for(final RestExtensionPayload payload : this.payloads){

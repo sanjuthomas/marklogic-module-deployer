@@ -17,7 +17,7 @@ import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.Format;
 
 /**
- * Deployer implementation to deploy all library components to MarkLogic module database.
+ * Deployer implementation to deploy all library files to MarkLogic module database.
  *
  * @author Sanju Thomas
  *
