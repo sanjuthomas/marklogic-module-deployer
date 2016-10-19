@@ -11,16 +11,29 @@ import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.DatabaseClientFactory.Authentication;
 
 /**
+ * MarkLogic connection manager class. This class provide one and only one connection per application server.
+ * Once the connection is created for an application server, its cached and all the subsequent request is served with same connection.
  *
  * @author Sanju Thomas
  *
  */
-public class ConnectionManager {
+public final class ConnectionManager {
 
+	/**
+	 * Constructor is marked private to avoid instance creation.
+	 */
+	private ConnectionManager(){}
 
 	private static final Logger logger = LoggerFactory.getLogger(ConnectionManager.class);
 	private static final Map<String, DatabaseClient> clientMap = new HashMap<>();
 
+	/**
+	 * Construct connection for a given application server if its not available in the cache.
+	 * If the connection is available in the cache, the same connection is returned to the client.
+	 *
+	 * @param mlApplicationServer
+	 * @return databaseClient
+	 */
 	public static final DatabaseClient getClient(
 			final ApplicationServer mlApplicationServer) {
 
@@ -43,6 +56,11 @@ public class ConnectionManager {
 		return clientMap.get(mlApplicationServer.name());
 	}
 
+	/**
+	 * Release the given connection and remove it from the cache.
+	 *
+	 * @param client
+	 */
 	public static void close(final DatabaseClient client){
 		if(null != client){
 			client.release();
@@ -50,6 +68,12 @@ public class ConnectionManager {
 		}
 	}
 
+	/**
+	 * Construct the name of database client in the host:port format.
+	 *
+	 * @param client
+	 * @return name
+	 */
 	private static String name(final DatabaseClient client){
 
 		final StringBuilder builder = new StringBuilder();
