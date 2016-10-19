@@ -17,6 +17,7 @@ public class ApplicationServer {
 	 *
 	 * @param mlServer
 	 * @param port
+	 * @see {@link Server}
 	 */
 	public ApplicationServer(final Server mlServer, final int port){
 		this.port = port;
@@ -27,6 +28,7 @@ public class ApplicationServer {
 	 * Return the MLServer instance.
 	 *
 	 * @return mlServer
+	 * @see {@link Server}
 	 */
 	public Server getMlServer() {
 		return this.mlServer;

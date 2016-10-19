@@ -17,6 +17,7 @@ import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.Format;
 
 /**
+ * Deployer implementation to deploy all library components to MarkLogic module database.
  *
  * @author Sanju Thomas
  *
@@ -27,6 +28,15 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	private final DatabaseClient databaseClient;
 	private final List<LibraryPayload> payloads = new ArrayList<>();
 
+	/**
+	 *
+	 * @param databaseClient
+	 * @param properties
+	 * @throws IOException
+	 * @see {@link DatabaseClient}
+	 * @see {@link Properties}
+	 * @see {@link IOException}
+	 */
 	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
@@ -35,6 +45,12 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 		}
 	}
 
+	/**
+	 * Deploy a given instance of the LibraryPayload into MarkLogic module database.
+	 *
+	 * @param libraryPayload
+	 * @see {@link LibraryPayload}
+	 */
 	@Override
 	public void deploy(final LibraryPayload t) {
 
@@ -44,6 +60,11 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 		elm.write(t.getLibraryPrefix() + file.getName(), new FileHandle(file).withFormat(Format.TEXT));
 	}
 
+	/**
+	 * Deploy all the instances of the LibraryPayload into MarkLogic module database.
+	 * See the constructor of the this class to see how the LibraryPayload instance are created.
+	 *
+	 */
 	@Override
 	public void deploy() {
 
