@@ -8,14 +8,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 
-/**
- * Maven plugin to deploy the MarkLogic modules into MarkLogic module database.
- *
- * @author Sanju Thomas
- * @date 20th Sep, 2016
- *
- */
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -32,10 +24,14 @@ import org.slf4j.LoggerFactory;
 import com.marklogic.client.DatabaseClient;
 
 /**
+ * Maven plugin to deploy the MarkLogic modules into MarkLogic module database.
  *
  * @author Sanju Thomas
+ * @date 20th Sep, 2016
  *
  */
+
+
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
 public class MLModuleDeployerMojo extends AbstractMojo {
 
