@@ -53,7 +53,7 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 	 */
 	@Override
 	public void deploy(final QueryOptionPayload t) {
-		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
+		logger.info("Deploying {} ", t.getFile().getName());
 		final File file = t.getFile();
 		final QueryOptionsManager qom =  this.databaseClient.newServerConfigManager().newQueryOptionsManager();
 		qom.writeOptions(FilenameUtils.removeExtension(file.getName()), new FileHandle(file));

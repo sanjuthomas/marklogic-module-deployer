@@ -55,7 +55,7 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	 */
 	@Override
 	public void deploy(final RestExtensionPayload t) {
-		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
+		logger.info("Deploying {} ", t.getFile().getName());
 		final ResourceExtensionsManager resourceExtensionsManager = this.databaseClient.newServerConfigManager().newResourceExtensionsManager();
 		final File file = t.getFile();
 		final ExtensionMetadata extensionMetadata = new ExtensionMetadata();

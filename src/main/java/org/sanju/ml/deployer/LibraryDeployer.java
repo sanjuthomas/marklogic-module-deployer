@@ -54,7 +54,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	@Override
 	public void deploy(final LibraryPayload t) {
 
-		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
+		logger.info("Deploying {} ", t.getFile().getName());
 		final ExtensionLibrariesManager elm = this.databaseClient.newServerConfigManager().newExtensionLibrariesManager();
 		final File file = t.getFile();
 		elm.write(t.getLibraryPrefix() + file.getName(), new FileHandle(file).withFormat(Format.TEXT));

@@ -50,7 +50,7 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	 */
 	@Override
 	public void deploy(final TransformPayload t) {
-		logger.info("Deploying {} to database {}", t.getFile().getName(), this.databaseClient.getDatabase());
+		logger.info("Deploying {}", t.getFile().getName());
 		final TransformExtensionsManager tem = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
 		final File file = t.getFile();
 		final String contentType = t.getContentType();
