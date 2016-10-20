@@ -46,6 +46,7 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	}
 
 	/**
+	 * Deploy given instance of a TransformPayload into MarkLogic module database.
 	 *
 	 */
 	@Override
@@ -67,6 +68,11 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 		}
 	}
 
+	/**
+	 * Deploy all the instances of the TransformPayload available to the MarkLogic module database.
+	 * See the constructor of this class to see how the TransformPayload instances are created.
+	 *
+	 */
 	@Override
 	public void deploy() {
 
