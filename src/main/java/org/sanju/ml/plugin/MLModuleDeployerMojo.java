@@ -30,8 +30,6 @@ import com.marklogic.client.DatabaseClient;
  * @date 20th Sep, 2016
  *
  */
-
-
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
 public class MLModuleDeployerMojo extends AbstractMojo {
 
