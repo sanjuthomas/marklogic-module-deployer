@@ -62,10 +62,15 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			final ApplicationServer applicationServer = new ApplicationServer(server, port);
 			databasecClient = ConnectionManager.getClient(applicationServer);
 			for (final ModuleTypes type : ModuleTypes.values()) {
-				final Constructor<?> constructor = Class.forName(properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
-				final Object instance = constructor.newInstance(databasecClient, properties);
-				final Method method = instance.getClass().getMethod(PropertyConstants.ML_MODULE_DEPLOYER_METHOD);
-				method.invoke(instance);
+				final String deployerClazz = properties.getProperty(type.getDeployerClass());
+				if(null != deployerClazz){
+					final Constructor<?> constructor = Class.forName(properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
+					final Object instance = constructor.newInstance(databasecClient, properties);
+					final Method method = instance.getClass().getMethod(PropertyConstants.ML_MODULE_DEPLOYER_METHOD);
+					method.invoke(instance);
+				}else{
+					logger.info("No Deployer Class found for {}", type.getDeployerClass());
+				}
 			}
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IOException
 				| InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -76,5 +81,6 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			logger.info("Ending the ml-module-deployer plugin execution.");
 		}
 	}
+
 
 }

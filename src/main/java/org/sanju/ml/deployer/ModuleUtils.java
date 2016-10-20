@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * All the utitlity methods that can be leveraged across different deployer implementations.
+ * All the utility methods that can be leveraged across different deployer
+ * implementations.
  *
  * @author Sanju Thomas
  *
@@ -24,14 +25,18 @@ public class ModuleUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static List<File> loadAssets(final String sourceCodeLocation) throws IOException{
+	public static List<File> loadAssets(final String sourceCodeLocation) throws IOException {
+
 		final List<File> files = new ArrayList<>();
-		try(Stream<Path> paths = Files.walk(Paths.get(sourceCodeLocation))) {
-			paths.forEach(filePath -> {
-				if (Files.isRegularFile(filePath)) {
-					files.add(new File(filePath.toUri()));
-				}
-			});
+		final File f = new File(sourceCodeLocation);
+		if (f.exists() && f.isDirectory()) {
+			try (Stream<Path> paths = Files.walk(Paths.get(sourceCodeLocation))) {
+				paths.forEach(filePath -> {
+					if (Files.isRegularFile(filePath)) {
+						files.add(new File(filePath.toUri()));
+					}
+				});
+			}
 		}
 		return files;
 	}
