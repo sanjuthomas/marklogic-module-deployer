@@ -27,7 +27,6 @@ import com.marklogic.client.DatabaseClient;
  * Maven plugin to deploy the MarkLogic modules into MarkLogic module database.
  *
  * @author Sanju Thomas
- * @date 20th Sep, 2016
  *
  */
 @Mojo(name = "ml-module-deployer", defaultPhase = LifecyclePhase.INSTALL)
