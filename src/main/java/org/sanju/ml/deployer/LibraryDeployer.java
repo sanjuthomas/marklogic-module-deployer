@@ -27,6 +27,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	private static final Logger logger = LoggerFactory.getLogger(LibraryDeployer.class);
 	private final DatabaseClient databaseClient;
 	private final List<LibraryPayload> payloads = new ArrayList<>();
+	private final String libraryLocation;
 
 	/**
 	 *
@@ -39,6 +40,7 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	 */
 	public LibraryDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
 		this.databaseClient = databaseClient;
+		this.libraryLocation = properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation());
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
 		for(final File file : files){
 			this.payloads.add(new LibraryPayload(properties.getProperty(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY), file));
@@ -53,11 +55,12 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	 */
 	@Override
 	public void deploy(final LibraryPayload t) {
-
 		logger.info("Deploying {} ", t.getFile().getName());
+
+		final String relative = new File(this.libraryLocation).toURI().relativize(t.getFile().toURI()).getPath();
 		final ExtensionLibrariesManager elm = this.databaseClient.newServerConfigManager().newExtensionLibrariesManager();
 		final File file = t.getFile();
-		elm.write(t.getLibraryPrefix() + file.getName(), new FileHandle(file).withFormat(Format.TEXT));
+		elm.write(t.getLibraryPrefix() + relative, new FileHandle(file).withFormat(Format.TEXT));
 	}
 
 	/**
