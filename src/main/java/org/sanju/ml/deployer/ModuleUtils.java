@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * All the utility methods that can be leveraged across different deployer
  * implementations.
@@ -17,6 +20,8 @@ import java.util.stream.Stream;
  *
  */
 public class ModuleUtils {
+
+	private static final Logger logger = LoggerFactory.getLogger(ModuleUtils.class);
 
 	/**
 	 * Load all files from a given location.
@@ -27,6 +32,7 @@ public class ModuleUtils {
 	 */
 	public static List<File> loadAssets(final String sourceCodeLocation) throws IOException {
 
+		logger.info("Loading files from {} ", sourceCodeLocation);
 		final List<File> files = new ArrayList<>();
 		final File f = new File(sourceCodeLocation);
 		if (f.exists() && f.isDirectory()) {
@@ -38,6 +44,7 @@ public class ModuleUtils {
 				});
 			}
 		}
+		logger.info("Found {} files at {}", files.size(), sourceCodeLocation);
 		return files;
 	}
 }

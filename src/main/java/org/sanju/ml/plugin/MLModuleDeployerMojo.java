@@ -62,6 +62,7 @@ public class MLModuleDeployerMojo extends AbstractMojo {
 			final ApplicationServer applicationServer = new ApplicationServer(server, port);
 			databasecClient = ConnectionManager.getClient(applicationServer);
 			for (final ModuleTypes type : ModuleTypes.values()) {
+				logger.info("Loading the artifacts from {} ", properties.getProperty(type.getSourceLocation()));
 				final String deployerClazz = properties.getProperty(type.getDeployerClass());
 				if(null != deployerClazz){
 					final Constructor<?> constructor = Class.forName(properties.getProperty(type.getDeployerClass())).getConstructor(DatabaseClient.class, Properties.class);
