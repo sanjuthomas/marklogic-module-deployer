@@ -56,7 +56,7 @@ public class TestMLModuleDeployerMojo extends AbstractTest{
 		this.transformExtensionManager = this.databaseClient.newServerConfigManager().newTransformExtensionsManager();
 		assertNotNull(this.resourceExtensionsManager.readServices("js-test-extension", new StringHandle()).get());
 		assertNotNull(this.resourceExtensionsManager.readServices("xq-test-extension", new StringHandle()).get());
-		assertNotNull(this.extensionLibrariesManager.read("/ext/libraries/test-lib.sjs", new StringHandle()).get());
+		assertNotNull(this.extensionLibrariesManager.read("/ext/test-lib.sjs", new StringHandle()).get());
 		assertNotNull(this.queryOptionsManager.readOptions("test-query-option", new StringHandle()).get());
 		assertNotNull(this.transformExtensionManager.readJavascriptTransform("js-test-transform", new StringHandle()).get());
 		assertNotNull(this.transformExtensionManager.readJavascriptTransform("xq-test-transform", new StringHandle()).get());

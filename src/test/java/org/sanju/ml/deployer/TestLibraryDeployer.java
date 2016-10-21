@@ -30,7 +30,7 @@ public class TestLibraryDeployer extends AbstractTest{
 	public void setup() throws FileNotFoundException, IOException{
 		super.setup();
 		this.mlModuleDeployer = new LibraryDeployer(ConnectionManager.getClient(this.mlApplicationServer), this.properties);
-		this.libraryPayload = new LibraryPayload("/ext/libraries/", new File("src/test/resources/libraries/sub/sub-test-lib.sjs"));
+		this.libraryPayload = new LibraryPayload("/ext/sub/sub-test-lib.sjs", new File("src/test/resources/libraries/sub/sub-test-lib.sjs"));
 	}
 
 	@After
@@ -42,6 +42,6 @@ public class TestLibraryDeployer extends AbstractTest{
 	public void shoulDeployLibraries(){
 		this.mlModuleDeployer.deploy(this.libraryPayload);
 		final ExtensionLibrariesManager elm = ConnectionManager.getClient(this.mlApplicationServer).newServerConfigManager().newExtensionLibrariesManager();
-		assertNotNull(elm.read("/ext/libraries/sub/sub-test-lib.sjs", new StringHandle()).get());
+		assertNotNull(elm.read("/ext/sub/sub-test-lib.sjs", new StringHandle()).get());
 	}
 }
