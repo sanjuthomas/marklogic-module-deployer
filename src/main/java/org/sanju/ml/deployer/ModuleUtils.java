@@ -32,7 +32,6 @@ public class ModuleUtils {
 	 */
 	public static List<File> loadAssets(final String sourceCodeLocation) throws IOException {
 
-		logger.info("Loading files from {} ", sourceCodeLocation);
 		final List<File> files = new ArrayList<>();
 		final File f = new File(sourceCodeLocation);
 		if (f.exists() && f.isDirectory()) {
