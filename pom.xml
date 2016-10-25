@@ -8,7 +8,7 @@
 	<packaging>maven-plugin</packaging>
 
 	<name>marklogic-module-deployer Maven Plugin</name>
-	<url>http://sanju.org</url>
+	<url>https://sanjuthomas.github.io/marklogic-module-deployer/</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
