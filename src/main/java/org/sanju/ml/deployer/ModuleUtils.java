@@ -13,8 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * All the utility methods that can be leveraged across different deployer
- * implementations.
+ * All the utility methods that can be leveraged across different deployer implementations.
  *
  * @author Sanju Thomas
  *
