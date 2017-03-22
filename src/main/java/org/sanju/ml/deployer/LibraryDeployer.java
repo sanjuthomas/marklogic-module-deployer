@@ -69,7 +69,6 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	 */
 	@Override
 	public void deploy() {
-		
 		payloads.forEach(payload -> this.deploy(payload));
 	}
 

@@ -74,7 +74,6 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	 */
 	@Override
 	public void deploy() {
-		
 		payloads.forEach(payload -> this.deploy(payload));
 	}
 
