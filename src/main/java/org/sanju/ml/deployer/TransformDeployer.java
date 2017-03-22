@@ -38,11 +38,10 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	 * @see {@link IOException}
 	 */
 	public TransformDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException {
+		
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.TRANSFORMS.getSourceLocation()));
-		for(final File file : files){
-			this.payloads.add(new TransformPayload(file));
-		}
+		files.forEach(file -> this.payloads.add(new TransformPayload(file)));
 	}
 
 	/**
@@ -75,10 +74,8 @@ public class TransformDeployer implements Deployer<TransformPayload> {
 	 */
 	@Override
 	public void deploy() {
-
-		for(final TransformPayload payload : this.payloads){
-			this.deploy(payload);
-		}
+		
+		payloads.forEach(payload -> this.deploy(payload));
 	}
 
 }

@@ -41,11 +41,10 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	 * @see {@link IOException}
 	 */
 	public RestExtensionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
+		
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.REST_EXT.getSourceLocation()));
-		for(final File file : files){
-			this.payloads.add(new RestExtensionPayload(file));
-		}
+		files.forEach(file -> this.payloads.add(new RestExtensionPayload(file)));
 	}
 
 	/**
@@ -70,9 +69,7 @@ public class RestExtensionDeployer implements Deployer<RestExtensionPayload>{
 	 */
 	@Override
 	public void deploy() {
-		for(final RestExtensionPayload payload : this.payloads){
-			this.deploy(payload);
-		}
+		payloads.forEach(payload -> this.deploy(payload));
 	}
 
 }

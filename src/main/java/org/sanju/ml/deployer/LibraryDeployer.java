@@ -42,9 +42,8 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 		this.databaseClient = databaseClient;
 		this.libraryLocation = properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation());
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.LIBRARIES.getSourceLocation()));
-		for(final File file : files){
-			this.payloads.add(new LibraryPayload(properties.getProperty(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY), file));
-		}
+		files.forEach(file -> this.payloads.add(new LibraryPayload(properties.getProperty(PropertyConstants.ML_LIBRARY_LOCATION_PROPERTY), file)));
+		
 	}
 
 	/**
@@ -70,10 +69,8 @@ public class LibraryDeployer implements Deployer<LibraryPayload>{
 	 */
 	@Override
 	public void deploy() {
-
-		for(final LibraryPayload payload : this.payloads){
-			this.deploy(payload);
-		}
+		
+		payloads.forEach(payload -> this.deploy(payload));
 	}
 
 }

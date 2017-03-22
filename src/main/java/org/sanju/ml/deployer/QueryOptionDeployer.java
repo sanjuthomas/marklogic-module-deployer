@@ -39,11 +39,10 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 	 * @see {@link IOException}
 	 */
 	public QueryOptionDeployer(final DatabaseClient databaseClient, final Properties properties) throws IOException{
+		
 		this.databaseClient = databaseClient;
 		final List<File> files = ModuleUtils.loadAssets(properties.getProperty(ModuleTypes.OPTIONS.getSourceLocation()));
-		for(final File file : files){
-			this.payloads.add(new QueryOptionPayload(file));
-		}
+		files.forEach(file -> this.payloads.add(new QueryOptionPayload(file)));
 	}
 
 	/**
@@ -64,9 +63,7 @@ public class QueryOptionDeployer implements Deployer<QueryOptionPayload>{
 	 */
 	@Override
 	public void deploy() {
-		for(final QueryOptionPayload payload : this.payloads){
-			this.deploy(payload);
-		}
+		payloads.forEach(payload -> this.deploy(payload));
 	}
 
 }
